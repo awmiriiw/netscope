@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400&display=swap');
+
+
+/* ===============================================================
+   1. GENERAL & VARIABLES (Professional Theme)
+   =============================================================== */
+:root {
+    --color-bg: #0d1117;
+    --color-surface-1: #161b22;
+    --color-surface-2: #21262d;
+    --color-border: #30363d;
+    --color-text-primary: #c9d1d9;
+    --color-text-secondary: #8b949e;
+    --color-primary: #58a6ff;
+    --color-primary-light: #79c0ff;
+    --color-success: #3fb950;
+    --color-danger: #f85149;
+    --color-shadow-dark: rgba(0, 0, 0, 0.5);
+    --color-shadow-medium: rgba(0, 0, 0, 0.3);
+    --color-shadow-primary: rgba(88, 166, 255, 0.5);
+
+    --font-family-monospace: 'Roboto Mono', monospace;
+
+    --spacing-sm: 8px;
+    --spacing-md: 10px;
+    --spacing-lg: 12px;
+    --spacing-xl: 15px;
+    --spacing-xxl: 20px;
+
+    --border-radius-sm: 6px;
+    --border-radius-md: 10px;
+
+    --transition-fast: all 0.2s ease-in-out;
+    --transition-medium: 0.5s ease-in-out;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-bg);
+    font-family: var(--font-family-monospace);
+    overflow: hidden;
+    color: var(--color-text-primary);
+}
+
+#mynetwork {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+/* ===============================================================
+   2. APP LAYOUT & MAIN COMPONENTS
+   =============================================================== */
+/* --- Info panel --- */
+#info-panel { position: absolute; top: 20px; left: -400px; width: 380px; max-height: calc(100vh - 40px); background-color: var(--color-surface-1); border-right: 2px solid var(--color-border); border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0; z-index: 20; transition: left var(--transition-medium); padding: var(--spacing-xxl); box-sizing: border-box; overflow-y: auto; box-shadow: 5px 5px 15px var(--color-shadow-dark); }
+#info-panel.visible { left: 0; }
+#info-panel h2 { margin-top: 0; color: var(--color-primary); font-size: 1.1em; word-wrap: break-word; }
+#info-panel h3 { margin-top: var(--spacing-xxl); border-bottom: 1px solid var(--color-border); padding-bottom: 5px; font-size: 1em; color: var(--color-text-secondary); }
+#info-panel ul { padding-left: var(--spacing-md); list-style-type: none; }
+#info-panel li { margin-bottom: var(--spacing-md); font-size: 0.9em; line-height: 1.4; word-wrap: break-word; }
+#info-panel span { color: var(--color-primary-light); }
+#info-panel .hostname { color: var(--color-text-secondary); font-size: 0.9em; display: block; }
+#info-panel .protocol-list { font-size: 0.85em; color: var(--color-text-secondary); }
+
+/* --- Title and Status --- */
+#title-bar { position: absolute; top: var(--spacing-xxl); left: var(--spacing-xxl); display: flex; align-items: center; z-index: 10; }
+#title { color: var(--color-primary); font-size: 1.5em; }
+#status-indicator { width: 12px; height: 12px; border-radius: 50%; margin-left: var(--spacing-xl); transition: background-color 0.5s ease; }
+.status-running { background-color: var(--color-success); box-shadow: 0 0 10px var(--color-success); }
+.status-stopped { background-color: var(--color-danger); box-shadow: 0 0 10px var(--color-danger); }
+
+/* --- Search bar --- */
+#search-container { position: absolute; top: var(--spacing-xxl); right: var(--spacing-xxl); z-index: 30; }
+#search-input { background-color: var(--color-bg); border: 1px solid var(--color-border); color: var(--color-text-primary); padding: var(--spacing-sm) var(--spacing-lg); border-radius: var(--border-radius-sm); font-family: var(--font-family-monospace); width: 250px; }
+#search-input:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 8px var(--color-shadow-primary); }
+
+/* --- Control button --- */
+#control-panel { position: absolute; bottom: var(--spacing-xxl); left: var(--spacing-xxl); z-index: 30; }
+.control-group { display: flex; gap: var(--spacing-md); }
+.control-group button { background-color: var(--color-surface-2); border: 1px solid var(--color-border); color: var(--color-text-primary); padding: var(--spacing-sm) var(--spacing-xl); border-radius: var(--border-radius-sm); font-family: var(--font-family-monospace); cursor: pointer; transition: var(--transition-fast); }
+.control-group button:hover { background-color: var(--color-border); border-color: var(--color-primary); }
+.control-group button i { margin-right: var(--spacing-sm); }
+
+/* --- Navigation buttons --- */
+.vis-navigation { position: absolute; bottom: var(--spacing-xxl); right: var(--spacing-xxl); display: flex; flex-direction: column; gap: var(--spacing-sm); z-index: 100; }
+.vis-button { width: 36px; height: 36px; background-color: var(--color-surface-1); border: 1px solid var(--color-border); border-radius: var(--border-radius-sm); cursor: pointer; transition: var(--transition-fast); background-repeat: no-repeat; background-position: center; box-shadow: 0 1px 3px var(--color-shadow-medium); }
+.vis-button:hover { background-color: var(--color-surface-2); border-color: var(--color-primary); }
+
+/* --- Zoom buttons --- */
+.vis-button.vis-zoomIn, .vis-button.vis-zoomOut, .vis-button.vis-zoomExtends { background-image: none !important; position: relative; }
+.vis-button.vis-up, .vis-button.vis-down, .vis-button.vis-left, .vis-button.vis-right { display: none; }
+.vis-button.vis-zoomIn::before, .vis-button.vis-zoomIn::after { content: ''; position: absolute; background-color: var(--color-text-secondary); transition: background-color 0.2s ease-in-out; }
+.vis-button.vis-zoomIn:hover::before, .vis-button.vis-zoomIn:hover::after { background-color: var(--color-text-primary); }
+.vis-button.vis-zoomIn::before { width: 14px; height: 2px; left: 10px; top: 16px; }
+.vis-button.vis-zoomIn::after { width: 2px; height: 14px; left: 16px; top: 10px; }
+.vis-button.vis-zoomOut::before { content: ''; position: absolute; width: 14px; height: 2px; left: 10px; top: 16px; background-color: var(--color-text-secondary); transition: background-color 0.2s ease-in-out; }
+.vis-button.vis-zoomOut:hover::before { background-color: var(--color-text-primary); }
+.vis-button.vis-zoomExtends::before { content: ''; position: absolute; width: 12px; height: 12px; left: 11px; top: 11px; border: 2px solid var(--color-text-secondary); border-radius: 2px; transition: border-color 0.2s ease-in-out; }
+.vis-button.vis-zoomExtends:hover::before { border-color: var(--color-text-primary); }

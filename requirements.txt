@@ -1,0 +1,9 @@
+Flask
+pyshark
+ipwhois
+networkx
+requests
+dnspython
+tldextract
+python-dotenv
+mac-vendor-lookup

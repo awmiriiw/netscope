@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NetScope Pro | Cyber Intelligence</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+
+    <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+  </head>
+  <body>
+    <div class="scanner-line"></div>
+    <div class="grid-overlay"></div>
+
+    <header id="top-bar">
+      <div class="logo">
+        <i class="fas fa-microchip"></i>
+        <span>NET<b>SCOPE</b> <small>CORE_V2.5</small></span>
+      </div>
+      <div class="system-stats">
+        <div class="search-wrapper">
+          <i class="fas fa-search"></i>
+          <input
+            type="text"
+            id="search-input"
+            placeholder="SEARCH IP OR DOMAIN..."
+          />
+        </div>
+        <div class="divider-v"></div>
+        <span id="status-text">INITIALIZING...</span>
+        <div id="status-indicator"></div>
+      </div>
+    </header>
+
+    <main id="mynetwork"></main>
+
+    <aside id="info-panel">
+      <div class="panel-header">
+        <h3><i class="fas fa-fingerprint"></i> NODE_INTELLIGENCE</h3>
+        <button id="close-panel" title="Close Panel">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div id="info-content">
+        <div class="placeholder-text">SELECT A NODE OR LINK TO ANALYZE</div>
+      </div>
+    </aside>
+
+    <nav id="control-panel">
+      <div class="btn-group">
+        <button id="start-btn" title="Start Network Capture">
+          <i class="fas fa-play"></i> START
+        </button>
+        <button id="stop-btn" title="Stop Network Capture">
+          <i class="fas fa-power-off"></i> STOP
+        </button>
+      </div>
+
+      <div class="divider"></div>
+
+      <button id="clear-btn" class="danger" title="Purge All Data">
+        <i class="fas fa-trash-alt"></i> PURGE_DATA
+      </button>
+    </nav>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>

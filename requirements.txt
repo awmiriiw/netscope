@@ -1,0 +1,12 @@
+Flask
+pyshark
+ipwhois
+networkx
+requests
+dnspython
+tldextract
+coloredlogs
+mac-vendor-lookup
+pydantic-settings
+
+
